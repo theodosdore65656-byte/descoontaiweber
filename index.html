@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Descoontaí</title>
+    
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#D90F20" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Descoontaí" />
+    
+    <link rel="icon" type="image/png" href="https://github.com/WeberDG/descoontai/blob/main/simbolo. png?raw=true" />
+    <link rel="apple-touch-icon" href="https://github.com/WeberDG/descoontai/blob/main/simbolo.png?raw=true" />
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred. push(async function(OneSignal) {
+        try {
+          await OneSignal.init({
+            appId: "dcc77ccf-4bfd-4830-81fd-033fa309210e",
+            allowLocalhostAsSecureOrigin: true,
+          });
+        } catch (e) {
+          console. warn("OneSignal Init Error (Check Domain Settings):", e);
+        }
+      });
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#fff1f2',
+                100: '#ffe4e6',
+                500: '#EA1D2C',
+                600: '#D90F20',
+                700: '#be123c',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      . no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      . no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width:  none;
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body class="bg-gray-50 text-gray-900 antialiased">
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registrado! ', reg. scope))
+            .catch(err => console.log('SW falhou:', err));
+        });
+      }
+    </script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

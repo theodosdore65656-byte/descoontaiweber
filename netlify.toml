@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# REGRA DE SEGURANÇA:
+# Redireciona chamadas de /api/asaas para a nossa função segura (asaasProxy.js)
+# Assim a chave API nunca sai do servidor.
+[[redirects]]
+  from = "/api/asaas/*"
+  to = "/.netlify/functions/asaasProxy"
+  status = 200
+  force = true
+
+# Regra para SPA (React) não quebrar ao atualizar a página
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
